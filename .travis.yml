@@ -38,12 +38,7 @@ after_script:
 before_deploy:
 - ls -al ./build/Release-iphoneos/*.ipa
 - ls -al /Users/travis/build/PawanAhire/ProgressDemo/build/Release-iphoneos/*.ipa
-- "{ sed -nE 's/^[ \\t]*\"version\": \"([0-9]{1,}\\.[0-9]{1,}\\.)[0-9x]{1,}\",$/\\1/p' "./build/Release-iphoneos/ProgressDemo.ipa"; git describe --abbrev=0 | sed -E 's/^v([0-9]{1,}\\.[0-9]{1,}\\.)([0-9]{1,})$/\\1 \\2/g'; } | tr \"\\n\" \" \" | awk '{printf($1==$2?\"v\"$2$3+1:\"v\"$1\"0\")}' | xargs -I {} git tag -a {} -m \"{}\"\n"
-  # Update package.json based on the git tag we just created
-- npm --no-git-tag-version version from-git
-
-
-#- "./scripts/push.sh"
+- "./scripts/push.sh"
 #- "./scripts/deploy.sh"
 
 
@@ -56,6 +51,5 @@ deploy:
   - "./build/Release-iphoneos/ProgressDemo.ipa"
   #- "./build/Release-iphoneos/ProgressDemo.ipa/ProgressDemo.ipa"
   skip_cleanup: true
-  script: git push --tags
   on:
     repo: PawanAhire/ProgressDemo
