@@ -7,6 +7,11 @@ if [ "$TRAVIS_BRANCH" = "$BRANCH" ]; then
 
 	    git config --global user.email "travis@travis-ci.org"
 	    git config --global user.name "Travis"
+	    
+	    git config --global push.default simple
+
+	    git remote add origin "https://${GH_TOKEN}@github.com/PawanAhire/ProgressDemo.git"
+
 
 	    # Add tag and push to master.
 	    git tag -a v${TRAVIS_BUILD_NUMBER} -m "Travis build $TRAVIS_BUILD_NUMBER pushed a tag."
