@@ -2,15 +2,48 @@
 # Tag last commit as 'latest'.
 
 setup_git() {
+
+  YEAR=$(date +"%Y")
+  MONTH=$(date +"%m")
+
   git config --global user.email "travis@travis-ci.org"
   git config --global user.name "Travis"
+  
+  git config --global push.default simple
+
+  export GIT_TAG=V2.$YEAR-$MONTH.$TRAVIS_BUILD_NUMBER
+
+  msg="Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
+
+  echo "$msg" >> ./build/Release-iphoneos/ProgressDemo.ipa
+  
 }
 
-#commit_website_files() {
+commit_website_files() {
+  git add ./build/Release-iphoneos/ProgressDemo.ipa
+  git commit -m "Update build version file with $TRAVIS_BUILD_NUMBER"
+  
   #git checkout -b gh-pages
   #git add .
   #git commit -m "Travis build"
-#}
+}
+
+
+# git remote add origin "https://${GH_TOKEN}@github.com/PawanAhire/ProgressDemo.git"
+
+# export GIT_TAG=V2.$YEAR-$MONTH.$TRAVIS_BUILD_NUMBER
+
+# git fetch --tags
+
+# msg="Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
+
+# if git tag $GIT_TAG -a -m "$msg" 2>/dev/null; then
+# git tag $GIT_TAG -a -m "Tag Generated from TravisCI for build $TRAVIS_BUILD_NUMBER"
+# git push origin master && git push origin master --tags
+# ls -aR
+# else echo Tag already exists!; 
+# fi
+
 
 upload_files() {
 
@@ -43,5 +76,5 @@ upload_files() {
 }
 
 setup_git
-#commit_website_files
+commit_website_files
 upload_files
