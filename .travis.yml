@@ -38,7 +38,8 @@ after_script:
 before_deploy:
 - ls -al ./build/Release-iphoneos/*.ipa
 - ls -al /Users/travis/build/PawanAhire/ProgressDemo/build/Release-iphoneos/*.ipa
-- "./scripts/push.sh"
+- "./scripts/set_tags.sh"
+#- "./scripts/push.sh"
 #- "./scripts/deploy.sh"
 
 
