@@ -10,7 +10,7 @@ if [ "$TRAVIS_BRANCH" = "$BRANCH" ]; then
 	    
 	    git config --global push.default simple
 
-	    git remote add origin https://${GH_TOKEN}@github.com/PawanAhire/ProgressDemo.git
+	    git remote set-url origin https://${GH_TOKEN}@github.com/PawanAhire/ProgressDemo.git
 
 
 	    # Add tag and push to master.
